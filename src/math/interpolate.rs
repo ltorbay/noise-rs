@@ -6,7 +6,7 @@ use num_traits::MulAdd;
 #[inline]
 pub(crate) fn linear<T>(a: T, b: T, x: T) -> T
 where
-    T: MulAdd<Output = T> + Sub<Output = T> + Copy,
+    T: MulAdd<Output = T> + Sub<Output = T> + Copy + std::ops::Mul<Output = T>,
 {
     x.mul_add(b - a, a)
 }
@@ -16,7 +16,7 @@ where
 #[inline]
 pub(crate) fn linear<T>(a: T, b: T, x: T) -> T
 where
-    T: MulAdd<Output = T> + Sub<Output = T> + Copy,
+    T: MulAdd<Output = T> + Sub<Output = T> + Copy + std::ops::Mul<Output = T> + std::ops::Add<Output = T>,
 {
     (x * (b - a)) + a
 }
@@ -36,7 +36,7 @@ where
 #[inline]
 pub(crate) fn cubic<T>(n0: T, n1: T, n2: T, n3: T, alpha: T) -> T
 where
-    T: Add<Output = T> + Mul<Output = T> + Sub<Output = T> + Copy,
+    T: Add<Output = T> + Mul<Output = T> + Sub<Output = T> + Copy + std::ops::Mul<Output = T>,
 {
     let p = (n3 - n2) - (n0 - n1);
     let q = (n0 - n1) - p;

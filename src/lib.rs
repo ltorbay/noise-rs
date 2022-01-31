@@ -14,6 +14,7 @@
 
 #[macro_use]
 extern crate alloc;
+extern crate std;
 
 pub use crate::noise_fns::*;
 
